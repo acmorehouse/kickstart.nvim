@@ -31,6 +31,19 @@ do
   -- Don't show the mode, since it's already in the status line
   vim.o.showmode = false
 
+vim.g.clipboard = {
+    name = 'copyq',
+    copy = {
+        ['+'] = function() os.execute('copyq copy') end,
+        ['*'] = function() os.execute('copyq copy') end,
+    },
+    paste = {
+        ['+'] = function() os.execute('copyq paste') end,
+        ['*'] = function() os.execute('copyq paste') end,
+    },
+}
+
+
   -- Sync clipboard between OS and Neovim.
   --  Schedule the setting after `UiEnter` because it can increase startup-time.
   --  Remove this option if you want your OS clipboard to remain independent.
